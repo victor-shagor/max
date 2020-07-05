@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import request from 'supertest';
-import app from '../app';
+import app from '../server/app';
 
 describe('Root route', () => {
   it('should display welcome', async (done) => {

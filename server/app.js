@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import swaggerUi from 'swagger-ui-express';
@@ -6,7 +7,7 @@ import logger from 'morgan';
 import moviesRouter from './routes/movies';
 import charactersRouter from './routes/characters';
 import commentRouter from './routes/comment';
-import swaggerDocumentation from './swagger.json';
+import swaggerDocumentation from '../swagger.json';
 
 const app = express();
 
@@ -16,6 +17,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+  console.log(`Listening from port ${port}`);
+});
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocumentation));
 app.use('/movies', moviesRouter);
 app.use('/characters', charactersRouter);

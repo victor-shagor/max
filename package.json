@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "build": "babel migrations --out-dir build",
-    "start-dev": "nodemon --exec babel-node ./bin/www",
-    "create": "babel-node ./migrations/createTable.js",
-    "drop": "babel-node ./migrations/dropTable.js",
+    "start": "node build/app.js",
+    "build": "babel server --out-dir build",
+    "start-dev": "nodemon --exec babel-node ./server/app.js",
+    "create": "babel-node ./server/migrations/createTable.js",
+    "drop": "babel-node ./server/migrations/dropTable.js",
     "test": "NODE_ENV=test yarn run drop && NODE_ENV=test yarn run create && NODE_ENV=test jest --coverage",
     "prod:create": "node build/migrations/createTable.js",
     "prod:drop": "node build/migrations/dropTable.js"
