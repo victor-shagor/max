@@ -13,10 +13,13 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _express = _interopRequireDefault(require("express"));
 
+var _publicIp = _interopRequireDefault(require("public-ip"));
+
 var _helperResponse = _interopRequireDefault(require("../helpers/helperResponse"));
 
 var _commentController = _interopRequireDefault(require("../controller/commentController"));
 
+/* eslint-disable no-return-assign */
 var router = _express["default"].Router();
 
 router.get('/', /*#__PURE__*/function () {
@@ -60,43 +63,47 @@ router.post('/', /*#__PURE__*/function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             _req$body = req.body, movie = _req$body.movie, comment = _req$body.comment;
-            ip = req.ip;
+            _context2.next = 3;
+            return _publicIp["default"].v4();
+
+          case 3:
+            ip = _context2.sent;
 
             if (!(!movie || !comment)) {
-              _context2.next = 4;
+              _context2.next = 6;
               break;
             }
 
             return _context2.abrupt("return", _helperResponse["default"].clientError(res, 'movie and comment is required'));
 
-          case 4:
+          case 6:
             if (!(comment.length > 500)) {
-              _context2.next = 6;
+              _context2.next = 8;
               break;
             }
 
             return _context2.abrupt("return", _helperResponse["default"].clientError(res, 'comment cannot be more than 500 characters'));
 
-          case 6:
-            _context2.prev = 6;
-            _context2.next = 9;
+          case 8:
+            _context2.prev = 8;
+            _context2.next = 11;
             return _commentController["default"].postComment(movie, comment, ip);
 
-          case 9:
+          case 11:
             data = _context2.sent;
-            return _context2.abrupt("return", _helperResponse["default"].requestSuccessful(res, data, 200));
+            return _context2.abrupt("return", _helperResponse["default"].requestSuccessful(res, data, 201));
 
-          case 13:
-            _context2.prev = 13;
-            _context2.t0 = _context2["catch"](6);
+          case 15:
+            _context2.prev = 15;
+            _context2.t0 = _context2["catch"](8);
             return _context2.abrupt("return", _helperResponse["default"].checkExpressErrors(res));
 
-          case 16:
+          case 18:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[6, 13]]);
+    }, _callee2, null, [[8, 15]]);
   }));
 
   return function (_x3, _x4) {

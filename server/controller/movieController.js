@@ -40,7 +40,7 @@ const getMovies = async () => {
             title: res.title,
             openeing_crawl: res.opening_crawl,
             commentCount: commentObject[key],
-            date: res.release_date,
+            release_date: res.release_date,
           };
         }
       }
