@@ -7,9 +7,13 @@ DROP TABLE IF EXISTS comments CASCADE;
 `;
 
 const dropDatabase = async () => {
-  await pool.query(dropTables).then(() => {
-    console.log('Tables successfully removed from Database');
-  });
+  try {
+    await pool.query(dropTables).then(() => {
+      console.log('Tables successfully removed from Database');
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 dropDatabase();

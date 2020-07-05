@@ -11,9 +11,13 @@ const createTables = `
   );
 `;
 const createDatabaseTables = async () => {
-  await pool.query(createTables).then(() => {
-    console.log('Tables successfully created');
-  });
+  try {
+    await pool.query(createTables).then(() => {
+      console.log('Tables successfully created');
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 createDatabaseTables();
