@@ -1,0 +1,39 @@
+{
+  "name": "max",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "build": "babel migrations --out-dir build",
+    "start-dev": "nodemon --exec babel-node ./bin/www",
+    "create": "babel-node ./migrations/createTable.js",
+    "drop": "babel-node ./migrations/dropTable.js",
+    "test": "NODE_ENV=test yarn run drop && NODE_ENV=test yarn run create && NODE_ENV=test jest --coverage",
+    "prod:create": "node build/migrations/createTable.js",
+    "prod:drop": "node build/migrations/dropTable.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pg": "^8.2.1",
+    "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/node": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
+  }
+}
