@@ -35,11 +35,11 @@ describe('app routes test', () => {
     done();
   });
   it('should post comments', async (done) => {
-    const res = await request(app).get('/comments').send({
+    const res = await request(app).post('/comments').send({
       movie: 'movie title',
       comment: 'movie comment',
     });
-    expect(res.status).toEqual(200);
+    expect(res.status).toEqual(201);
     expect(res.body).toHaveProperty('data');
     done();
   });

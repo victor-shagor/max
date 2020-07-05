@@ -1,4 +1,6 @@
+/* eslint-disable no-return-assign */
 import express from 'express';
+import publicIp from 'public-ip';
 import helperResponse from '../helpers/helperResponse';
 import commentController from '../controller/commentController';
 
@@ -15,7 +17,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const { movie, comment } = req.body;
-  const { ip } = req;
+  const ip = await publicIp.v4();
   if (!movie || !comment) {
     return helperResponse.clientError(res, 'movie and comment is required');
   }
@@ -27,7 +29,7 @@ router.post('/', async (req, res) => {
   }
   try {
     const data = await commentController.postComment(movie, comment, ip);
-    return helperResponse.requestSuccessful(res, data, 200);
+    return helperResponse.requestSuccessful(res, data, 201);
   } catch (error) {
     return helperResponse.checkExpressErrors(res);
   }

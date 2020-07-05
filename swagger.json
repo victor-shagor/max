@@ -30,7 +30,7 @@
       "filter": {
         "type": "string",
         "description": " a filter paremeter to filter result by gender",
-        "enum": ["agag", "agfggfa"]
+        "enum": ["male", "female"]
       },
       "openeing_crawl": {
         "type": "string"
@@ -399,7 +399,7 @@
           "required": true
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "comment posted succesfully"
           },
           "500": {
